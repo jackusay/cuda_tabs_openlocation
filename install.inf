@@ -1,0 +1,16 @@
+; ref https://en.wikipedia.org/wiki/INI_file
+[info]
+title=Open tabs on explorer
+desc=Open tabs' location on explorer. Only works on Windows OS. Only works on saved files.
+type=cudatext-plugin
+subdir=cuda_tabs_openlocation
+homepage=(to write)
+
+[item500]
+section=events
+events=on_start2
+
+[item2]
+section=commands
+caption=Tab location\&Add menu
+method=tab_open_location
