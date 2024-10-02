@@ -1,13 +1,12 @@
 # Tabs Open Location Plugin for CudaText
 
-This CudaText plugin allows you to open the current tab's file location directly in Windows File Explorer. It adds a menu option to the tab's context menu, making it easy to locate the currently opened file.
+This plugin for CudaText adds a convenient option to the tab's context menu, allowing you to open the file's location in Windows Explorer.
 
 ## Features
 
 - Adds a "Open Explorer" option to the tab's context menu in CudaText.
 - Opens Windows File Explorer with the file selected.
 - Displays a status message once the task is completed.
-- Handles cases where the file doesn't exist.
 
 ## Installation
 
@@ -16,9 +15,10 @@ This CudaText plugin allows you to open the current tab's file location directly
 
 ## Usage
 
-- Right-click on any open tab in CudaText.
-- Select the "Open Explorer" option from the context menu.
-- Windows File Explorer will open with the file's location selected.
+1. Open a file in CudaText.
+2. Right-click the tab of the file you want to locate.
+3. Select the "Open Explorer" option from the menu.
+4. Windows File Explorer will open with the selected file.
 
 ## Limitations
 
@@ -26,4 +26,4 @@ This CudaText plugin allows you to open the current tab's file location directly
 
 ## Code Overview
 
-The main functionality is provided by the `open_tab_on_explorer()` function, which retrieves the current file path from the active tab and opens the corresponding location in Windows File Explorer using the `subprocess.Popen` command.
+The core functionality is handled by the `open_tab_on_explorer()` function. This function fetches the current file path and uses `subprocess.Popen` to open the location in Windows File Explorer.
