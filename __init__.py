@@ -10,11 +10,10 @@ PRE = '[Tabs open location]'
 class Command:
     def tab_open_location(self): #method in install.inf
         return run() 
-    def on_start2(self, ed_self):   return run() #Called once on program start.
+    def on_tab_menu(self, ed_self):   return run(ed_self)
 
-def open_tab_on_explorer():
-    filepath = ed.get_filename()
-    print(f'{filepath}')
+def open_tab_on_explorer(ed_self):
+    filepath = ed_self.get_filename()
     if os.path.isfile(filepath):
         #only works on Windows OS
         subprocess.Popen(fr'explorer /select, "{filepath}"') # insecurity
@@ -24,6 +23,8 @@ def open_tab_on_explorer():
     print("eee")
     return
     
-def run():
-    menu_proc( menu_proc("tab", MENU_GET_PROP)['id'] , MENU_ADD, command=open_tab_on_explorer, caption='Open explorer')
+def run(ed_self):
+    menu_proc(  menu_proc("tab", MENU_GET_PROP)['id'] , MENU_ADD, 
+                command=lambda: open_tab_on_explorer(ed_self), # Use lambda to delay the execution
+                caption='Open explorer')
     msg_status(PRE + _('JOB DONE'))
