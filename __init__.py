@@ -24,7 +24,23 @@ def open_tab_on_explorer(ed_self):
     return
     
 def run(ed_self):
-    menu_proc(  menu_proc("tab", MENU_GET_PROP)['id'] , MENU_ADD, 
+    tab_id = menu_proc("tab", MENU_GET_PROP)['id']
+
+    # loop that tab's right-click menu
+    for menu in menu_proc( tab_id, MENU_ENUM):
+
+        if menu.get('cap') == 'Open explorer':
+            menu_id = menu.get('id')
+
+            menu_proc(  menu_id, MENU_REMOVE)
+            menu_proc(  tab_id, MENU_ADD, 
+                        command=lambda: open_tab_on_explorer(ed_self), # Use lambda to delay the execution
+                        caption='Open explorer')
+            msg_status(PRE + _('JOB DONE'))
+            return
+            
+    menu_proc(  tab_id, MENU_ADD, 
                 command=lambda: open_tab_on_explorer(ed_self), # Use lambda to delay the execution
                 caption='Open explorer')
     msg_status(PRE + _('JOB DONE'))
+    return
